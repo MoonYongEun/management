@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class UserDTO {
 	private int seq;
+	private String id;
+	private String pwd;
 	private String name;
-	private String kor;
-	private String math;
-	private String eng;
+	private String department;
 	
 }

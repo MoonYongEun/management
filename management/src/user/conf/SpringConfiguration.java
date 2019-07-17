@@ -11,8 +11,8 @@ public class SpringConfiguration {
 	public BasicDataSource getBasicDataSource() {
 		BasicDataSource basicDataSource = new BasicDataSource();
 		basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		basicDataSource.setUrl("jdbc:mysql://localhost:3306/sts?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false");
-		basicDataSource.setUsername("sts");
+		basicDataSource.setUrl("jdbc:mysql://localhost:3306/management?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false");
+		basicDataSource.setUsername("management");
 		basicDataSource.setPassword("spring");
 		basicDataSource.setMinIdle(3);
 		basicDataSource.setMaxTotal(20);
