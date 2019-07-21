@@ -34,4 +34,15 @@ public class UserDAOMyBatis implements UserDAO {
 		return sqlSession.selectOne("userSQL.checkId", id);
 	}
 
+	@Override
+	public List<UserDTO> search(Map<String, String> map) {
+		return sqlSession.selectList("userSQL.search", map);
+	}
+
+	@Override
+	public void delete(String seq) {
+		sqlSession.delete("userSQL.delete", seq);
+		
+	}
+
 }

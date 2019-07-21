@@ -16,4 +16,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select id from management where id = #{id}
  	</select>
  	
+ 	<select id="search" parameterType="java.util.Map" resultType="user">
+ 		select * from management 
+ 		
+ 		<choose>
+ 			<when test="subject == 'id'">
+ 				where ${subject} = #{content}
+ 			</when>
+ 			
+ 			<when test="subject == 'name'">
+ 				where  ${subject} like CONCAT('%',#{content},'%')
+ 			</when>
+ 			
+ 			<when test="subject == 'department'">
+ 				where ${subject} like CONCAT('%',#{content},'%')
+ 			</when>
+ 		</choose>
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="String">
+ 		delete from management where seq = #{seq}
+ 	</delete>
 </mapper>

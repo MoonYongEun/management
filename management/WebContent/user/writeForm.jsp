@@ -87,7 +87,10 @@ $('#id').focusout(function(){
 $('#write').click(function(){
 	$('#idDiv,#pwdDiv,#repwdDiv,#nameDiv').empty();
 	
-	if($('#id').val().length == 0 ){
+	if($('#idCheckDiv').text() == "ID が存在します"){
+		alert("同じ ID が存在します");
+		
+	}else if($('#id').val().length == 0 ){
 		$('#idDiv').text("IDを入力してください")
 				   .css("font-size","8pt");
 				   
@@ -109,7 +112,17 @@ $('#write').click(function(){
 		   			 .css("font-size","8pt");
 		
 	}else{
+		
 		if(confirm("社員登録を行いますか?")){
+			
+			$.ajax({
+				type:'GET',
+				url:'/management/user/cookieDelete.do',
+				success:function(data){
+					alert("쿠키삭제 성공");
+				}
+			});
+			
 			$('form').submit();
 			
 		}else return;

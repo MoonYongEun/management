@@ -16,8 +16,9 @@ li{margin-bottom: 10px;}
 <h4 align ="center">メインメニュー画面</h4>
 <div>${memId }様  ログイン</div>
 <ul>
-	<li><a href="#">社員情報検索</a></li>
-	<li><a href="#">社員情報修正</a></li>
+	<li><a id="write" href="#">社員登録</a></li>
+	<li><a id="search" href="#">社員情報検索</a></li>
+	<li><a id="modify" href="#">社員情報修正</a></li>
 	<li><a id="logout" href="#">ログアウト</a></li>
 </ul>
 
@@ -26,6 +27,18 @@ li{margin-bottom: 10px;}
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
 <script type="text/javascript">
+$('#write').click(function(){
+	location.href="/management/user/writeForm.do";
+});
+
+$('#search').click(function(){
+	location.href="/management/user/searchForm.do";
+});
+
+$('#modify').click(function(){
+	location.href="/management/user/modifyForm.do";
+});
+
 $('#logout').click(function(){
 	if(confirm("ログアウトしますか?")){
 		location.href="/management/user/logout.do";

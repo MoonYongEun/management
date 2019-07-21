@@ -15,4 +15,8 @@ public interface UserDAO {
 
 	public String checkId(String id);
 
+	public List<UserDTO> search(Map<String, String> map);
+
+	public void delete(String seq);
+
 }

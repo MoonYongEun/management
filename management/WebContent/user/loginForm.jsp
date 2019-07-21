@@ -29,13 +29,13 @@ margin-bottom: 10px;
 		
 			<div class="form-group">
 				<label for="id">ユーザID：</label> 
-				<input id="id" type="text" name="id" class="form-control">
+				<input id="id" type="text" name="id">
 				<div id="idDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
 				<label for="pwd">パスワード：</label> 
-				<input id="pwd" type="password" name="pwd" class="form-control">
+				<input id="pwd" type="password" name="pwd">
 				<div id="pwdDiv" align="center" style="color : red;"></div>
 			</div>
 			
