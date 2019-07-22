@@ -45,4 +45,15 @@ public class UserDAOMyBatis implements UserDAO {
 		
 	}
 
+	@Override
+	public UserDTO userModify(String id) {
+		return sqlSession.selectOne("userSQL.userModify", id);
+	}
+
+	@Override
+	public void userUpdate(Map<String, String> map) {
+		sqlSession.update("userSQL.userUpdate", map);
+		
+	}
+
 }

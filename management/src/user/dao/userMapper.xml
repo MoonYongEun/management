@@ -37,4 +37,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<delete id="delete" parameterType="String">
  		delete from management where seq = #{seq}
  	</delete>
+ 	
+ 	<select id="userModify" parameterType="String" resultType="user">
+ 		select id , name , department from management where id = #{id}
+ 	</select>
+ 	
+ 	<update id="userUpdate" parameterType="java.util.Map">
+ 		update management set name = #{name} ,department = #{department} where id = #{id}
+ 	</update>
+ 	
+ 	
 </mapper>

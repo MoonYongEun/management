@@ -19,4 +19,8 @@ public interface UserDAO {
 
 	public void delete(String seq);
 
+	public UserDTO userModify(String id);
+
+	public void userUpdate(Map<String, String> map);
+
 }

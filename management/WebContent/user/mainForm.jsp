@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>メインメニュー画面</title>
 <style type="text/css">
-#center{ position:absolute; top:20%; left:50%; width:300px; height:200px; overflow:hidden; margin-top:-150px; margin-left:-100px;}
+#center{ position:absolute; top:40%; left:50%; width:300px; height:300px; overflow:hidden; margin-top:-150px; margin-left:-100px;}
 li{margin-bottom: 10px;}
 
 </style>

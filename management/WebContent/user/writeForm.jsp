@@ -8,7 +8,7 @@
 <style type="text/css">
 label {text-align: center; width: 150px; display: block; float: left; clear: left; margin-right: 5px;}
 .form-group{margin-bottom: 10px;}
-#center{ position:absolute; top:35%; left:40%; width:400px; height:500px; overflow:hidden; margin-top:-150px; margin-left:-100px;}
+#center{ position:absolute; top:40%; left:40%; width:400px; height:500px; overflow:hidden; margin-top:-150px; margin-left:-100px;}
 </style>
 </head>
 <body>
@@ -119,7 +119,7 @@ $('#write').click(function(){
 				type:'GET',
 				url:'/management/user/cookieDelete.do',
 				success:function(data){
-					alert("쿠키삭제 성공");
+					alert("社員登録をしました");
 				}
 			});
 			
