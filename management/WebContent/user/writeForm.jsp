@@ -18,33 +18,33 @@ label {text-align: center; width: 150px; display: block; float: left; clear: lef
 			<h4 align ="center">登録画面</h4>
 		
 			<div class="form-group">
-				<label for="id">ユーザID：</label> 
-				<input id="id" type="text" name="id" class="form-control">
+				<label for="login_id">ユーザID：</label> 
+				<input id="login_id" type="text" name="login_id" class="form-control">
 				<div id="idDiv" align="center" style="color : red;"></div>
 				<div id="idCheckDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="pwd">パスワード：</label> 
-				<input id="pwd" type="password" name="pwd" class="form-control">
+				<label for="login_pwd">パスワード：</label> 
+				<input id="login_pwd" type="password" name="login_pwd" class="form-control">
 				<div id="pwdDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="repwd">パスワード再入力：</label> 
-				<input id="repwd" type="password" name="repwd">
+				<label for="login_repwd">パスワード再入力：</label> 
+				<input id="login_repwd" type="password" name="login_repwd">
 				<div id="repwdDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="name">名前：</label> 
-				<input id="name" type="text" name="name">
+				<label for="corp_name">名前：</label> 
+				<input id="corp_name" type="text" name="corp_name">
 				<div id="nameDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="department">部署：</label> 
-				<select name="department" style="width:173px;">
+				<label for="corp_dpt">部署：</label> 
+				<select name="corp_dpt" style="width:173px;">
 				 <option value="総務部">総務部</option>
 				 <option value="ビジネスソリューション部">ビジネスソリューション部</option>
 				 <option value="其の外">其の外</option>
@@ -53,7 +53,7 @@ label {text-align: center; width: 150px; display: block; float: left; clear: lef
 			
 			<div align="center">
 				<button  type="button" id="write">社員登録</button>
-				<button  type="reset">取消し</button>
+				<button  type="button" id="reset">取消し</button>
 			</div>
 			
 		</div>
@@ -61,11 +61,12 @@ label {text-align: center; width: 150px; display: block; float: left; clear: lef
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
 <script type="text/javascript">
-$('#id').focusout(function(){
+$('#login_id').focusout(function(){
+	$('#idDiv,#pwdDiv,#repwdDiv,#nameDiv').empty();
 	$.ajax({
 		type:'POST',
 		url:'/management/user/idCheck.do',
-		data : 'id='+$('#id').val(),
+		data : 'login_id='+$('#login_id').val(),
 		dataType:'text',
 		success:function(data){
 			if(data == 'idFail'){
@@ -90,24 +91,24 @@ $('#write').click(function(){
 	if($('#idCheckDiv').text() == "ID が存在します"){
 		alert("同じ ID が存在します");
 		
-	}else if($('#id').val().length == 0 ){
+	}else if($('#login_id').val().length == 0 ){
 		$('#idDiv').text("IDを入力してください")
 				   .css("font-size","8pt");
 				   
-	}else if($('#pwd').val().length == 0 ){
+	}else if($('#login_pwd').val().length == 0 ){
 		$('#pwdDiv').text("PASSWORDを入力してください")
 		 		    .css("font-size","8pt");
 			
-	}else if($('#repwd').val().length == 0 ){
+	}else if($('#login_repwd').val().length == 0 ){
 		$('#repwdDiv').text("PASSWORDを再入力を入力してください")
 		   			  .css("font-size","8pt");
 		
 		
-	}else if($('#pwd').val() != $('#repwd').val() ){
+	}else if($('#login_pwd').val() != $('#login_repwd').val() ){
 			$('#repwdDiv').text("同じPASSWORDを入力してください")
 			  			  .css("font-size","8pt");
 			
-	}else if($('#name').val().length == 0 ){
+	}else if($('#corp_name').val().length == 0 ){
 		$('#nameDiv').text("名前を入力してください")
 		   			 .css("font-size","8pt");
 		
@@ -128,6 +129,15 @@ $('#write').click(function(){
 		}else return;
 			
 	}
+	
+});
+
+
+
+$('#reset').click(function(){
+	$('#login_id,#corp_name,#login_pwd,#login_repwd,#corp_name').val("");
+	$('#corp_dpt').val("総務部");
+	
 	
 });
 </script>

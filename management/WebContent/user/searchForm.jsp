@@ -23,29 +23,29 @@ ul{list-style:none;}
 	<ul>
 		<li id="liCheck">
 				<div id="idWidth">
-					<input type="radio" id="idCheck" name="check" value="id" checked="checked">
-					<label for="id">ユーザID：</label>
+					<input type="radio" id="idCheck" name="check" value="login_id" checked="checked">
+					<label for="login_id">ユーザID：</label>
 				</div>
-				<input id="id" type="text" name="id">&nbsp; ※完全一致検索
+				<input id="login_id" type="text" name="id">&nbsp; ※完全一致検索
 				<div id="idDiv" align="center" style="color : red;"></div>
 
 		</li>
 		
 		<li id="liCheck">
 			<div id="idWidth">
-				<input type="radio" id="nameCheck" name="check" value="name" >
-				<label for="name">社員名：</label>
+				<input type="radio" id="nameCheck" name="check" value="corp_name" >
+				<label for="corp_name">社員名：</label>
 			</div>
-			<input id="name" type="text" name="name">&nbsp; ※部分一致検索
+			<input id="corp_name" type="text" name="corp_name" readonly>&nbsp; ※部分一致検索
 			<div id="nameDiv" align="center" style="color : red;"></div>
 		</li>
 		
 		<li id="liCheck">
 			<div id="idWidth">
-				<input type="radio" id="departmentCheck" name="check" value="department" >
-				<label for="department">部署 ：</label>
+				<input type="radio" id="departmentCheck" name="check" value="corp_dpt" >
+				<label for="corp_dpt">部署 ：</label>
 			</div>
-			<input id="department" type="text" name="department" >&nbsp; ※部分一致検索
+			<input id="corp_dpt" type="text" name="corp_dpt" >&nbsp; ※部分一致検索
 			<div id="departmentDiv" align="center" style="color : red;"></div>
 		</li>
 		
@@ -77,29 +77,35 @@ ul{list-style:none;}
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var check= "id";
+	var check= "login_id";
 	$('#resultTable').hide();
+	$('#corp_name,#corp_dpt').attr('readonly',true);
 	
 	$('#idCheck,ul li:eq(0) label').click(function(){
-		$('ul li:eq(0) #id').focus();
+		$('ul li:eq(0) #login_id').focus();
 		$('#idCheck').prop("checked", true);
-		$('#id,#name,#department').val("");
-
+		$('#login_id,#corp_name,#corp_dpt').val("");
 		check = $('#idCheck').val();
+		$('#login_id').attr('readonly',false);
+		$('#corp_name,#corp_dpt').attr('readonly',true);
 	});
 	
 	$('#nameCheck , li:eq(1) label').click(function(){
 		$("#nameCheck").prop("checked", true);
-		$('ul li:eq(1) #name').focus();
-		$('#id,#name,#department').val("");
+		$('ul li:eq(1) #corp_name').focus();
+		$('#login_id,#corp_name,#corp_dpt').val("");
 		check = $('#nameCheck').val();
+		$('#corp_name').attr('readonly',false);
+		$('#login_id,#corp_dpt').attr('readonly',true);
 	});
 	
 	$('#departmentCheck,li:eq(2) label').click(function(){
-		$('ul li:eq(2) #department').focus();
+		$('ul li:eq(2) #corp_dpt').focus();
 		$('#departmentCheck').prop("checked", true);
-		$('#id,#name,#department').val("");
+		$('#login_id,#corp_name,#corp_dpt').val("");
 		check = $('#departmentCheck').val();
+		$('#corp_dpt').attr('readonly',false);
+		$('#login_id,#corp_name').attr('readonly',true);
 		
 	});
 	
@@ -131,11 +137,11 @@ $(document).ready(function(){
 							//alert(index);
 							
 							if($('#resultTable tr').length < data.list.length+1){
-								$('#resultTable').append('<tr id="'+item.seq+'">'
-										+'<td>'+item.seq+'</td>'
-										+'<td>'+item.name+'</td>'
-										+'<td>'+item.department+'</td>'
-										+'<td align="right"><a id="delete" value="'+item.seq+'" href="#" style="padding-right: 20px;">削除</a></td></tr>');
+								$('#resultTable').append('<tr id="'+item.corp_seq+'">'
+										+'<td>'+item.corp_seq+'</td>'
+										+'<td>'+item.corp_name+'</td>'
+										+'<td>'+item.corp_dpt+'</td>'
+										+'<td align="right"><a id="delete" value="'+item.corp_seq+'" href="#" style="padding-right: 20px;">削除</a></td></tr>');
 							}
 					
 						});//$.each
@@ -157,9 +163,9 @@ $(document).ready(function(){
 			$.ajax({
 				type:'POST',
 				url:'/management/user/delete.do',
-				data:'seq='+$(this).attr('value'),
+				data:'corp_seq='+$(this).attr('value'),
 				success:function(data){
-					alert("삭제되었습니다");
+					alert("削除しました");
 				},
 				error : function(request, status, error) {
 					 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

@@ -51,7 +51,7 @@ public class WriteController {
 	    
 	    if(request.getCookies() != null){
 		    for (int i = 0; i < cookies.length; i++) {
-			    Cookie obj = cookies[i];
+			    Cookie obj = cookies[i]; 
 			    
 			    map.put(obj.getName(),obj.getValue());
 		    }
@@ -60,7 +60,7 @@ public class WriteController {
 	    // 저장된 쿠키중에 read_count 만 불러오기
 	    String readCount = (String) map.get("read_count");
 	     // 저장될 새로운 쿠키값 생성
-	    String newReadCount = userDTO.getSeq()+"";
+	    String newReadCount = userDTO.getCorp_seq()+"";
 	    
 	    
 	    // 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사
@@ -77,12 +77,12 @@ public class WriteController {
 	
 	@RequestMapping(value="/user/idCheck.do",method=RequestMethod.POST)
 	@ResponseBody
-	public String idCheck(@RequestParam String id) {
-		if(id.equals(""))
+	public String idCheck(@RequestParam String login_id) {
+		if(login_id.equals(""))
 			return "empty";
 		
 		
-		String idcheck = userDAO.checkId(id);
+		String idcheck = userDAO.checkId(login_id);
 		
 		if(idcheck == null) {
 			return "idOk";

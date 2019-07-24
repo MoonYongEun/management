@@ -17,22 +17,22 @@ label {text-align: center; width: 150px; display: block; float: left; clear: lef
 			<h4 align ="center">社員情報変更画面</h4>
 		
 			<div class="form-group">
-				<label for="id">ユーザID：</label> 
-				<input id="id" type="text" name="id" class="form-control" value="${memId }" readonly>
+				<label for="login_id">ユーザID：</label> 
+				<input id="login_id" type="text" name="login_id" class="form-control" value="${memId }" readonly>
 				<div id="idDiv" align="center" style="color : red;"></div>
 				<div id="idCheckDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="name">名前：</label> 
-				<input id="name" type="text" name="name">
+				<label for="corp_name">名前：</label> 
+				<input id="corp_name" type="text" name="corp_name">
 				<input id="hiddenName" type="hidden" name="hiddenName">
 				<div id="nameDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="department">部署：</label>
-				<select id="department" name="department" style="width:173px;">
+				<label for="corp_dpt">部署：</label>
+				<select id="corp_dpt" name="corp_dpt" style="width:173px;">
 				 <option value="総務部">総務部</option>
 				 <option value="ビジネスソリューション部">ビジネスソリューション部</option>
 				 <option value="其の外">其の外</option>
@@ -55,13 +55,13 @@ $(document).ready(function(){
 	$.ajax({
 		type:'POST',
 		url:'/management/user/userModify.do',
-		data:'id='+$('#id').val(),
+		data:'login_id='+$('#login_id').val(),
 		dataType:'json',
 		success:function(data){
-			$('#name').val(data.dto.name);
-			$('#department').val(data.dto.department);
-			$('#hiddenName').val(data.dto.name);
-			$('#hiddenDepartment').val(data.dto.departement);
+			$('#corp_name').val(data.dto.corp_name);
+			$('#corp_dpt').val(data.dto.corp_dpt);
+			$('#hiddenName').val(data.dto.corp_name);
+			$('#hiddenDepartment').val(data.dto.corp_dpt);
 		}
 	});
 });
@@ -72,8 +72,8 @@ $('#modify').click(function(){
 
 
 $('#reset').click(function(){
-	$('#name').val($('#hiddenName').val());
-	$('#department').val($('#hiddenDepartment').val());
+	$('#corp_name').val($('#hiddenName').val());
+	$('#corp_dpt').val($('#hiddenDepartment').val());
 	
 });
 

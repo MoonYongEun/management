@@ -23,8 +23,8 @@ public class ModifyController {
 	}
 	
 	@RequestMapping(value="/user/userModify.do",method=RequestMethod.POST)
-	public ModelAndView userModify(@RequestParam String id) {		
-		UserDTO dto = userDAO.userModify(id);
+	public ModelAndView userModify(@RequestParam String login_id) {		
+		UserDTO dto = userDAO.userModify(login_id);
 		
 		ModelAndView mav = new ModelAndView("jsonView");
 		mav.addObject("dto", dto);

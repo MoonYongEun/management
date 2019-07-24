@@ -7,10 +7,10 @@ import lombok.Data;
 @Component
 @Data
 public class UserDTO {
-	private int seq;
-	private String id;
-	private String pwd;
-	private String name;
-	private String department;
+	private int corp_seq;
+	private String login_id;
+	private String login_pwd;
+	private String corp_name;
+	private String corp_dpt;
 	
 }

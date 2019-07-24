@@ -30,8 +30,8 @@ public class UserDAOMyBatis implements UserDAO {
 	}
 
 	@Override
-	public String checkId(String id) {
-		return sqlSession.selectOne("userSQL.checkId", id);
+	public String checkId(String login_id) {
+		return sqlSession.selectOne("userSQL.checkId", login_id);
 	}
 
 	@Override
@@ -40,14 +40,14 @@ public class UserDAOMyBatis implements UserDAO {
 	}
 
 	@Override
-	public void delete(String seq) {
-		sqlSession.delete("userSQL.delete", seq);
+	public void delete(String corp_seq) {
+		sqlSession.delete("userSQL.delete", corp_seq);
 		
 	}
 
 	@Override
-	public UserDTO userModify(String id) {
-		return sqlSession.selectOne("userSQL.userModify", id);
+	public UserDTO userModify(String login_id) {
+		return sqlSession.selectOne("userSQL.userModify", login_id);
 	}
 
 	@Override

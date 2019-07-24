@@ -35,9 +35,9 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value="/user/delete.do" ,method=RequestMethod.POST)
-	public String delete(@RequestParam String seq) {
-		userDAO.delete(seq);
-		return "";
+	@ResponseBody
+	public void delete(@RequestParam String corp_seq) {
+		userDAO.delete(corp_seq);
 	}
 
 }

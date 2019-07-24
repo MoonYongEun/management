@@ -28,14 +28,14 @@ margin-bottom: 10px;
 			<h4 align ="center">ログイン画面</h4>
 		
 			<div class="form-group">
-				<label for="id">ユーザID：</label> 
-				<input id="id" type="text" name="id">
+				<label for="login_id">ユーザID：</label> 
+				<input id="login_id" type="text" name="login_id">
 				<div id="idDiv" align="center" style="color : red;"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="pwd">パスワード：</label> 
-				<input id="pwd" type="password" name="pwd">
+				<label for="login_pwd">パスワード：</label> 
+				<input id="login_pwd" type="password" name="login_pwd">
 				<div id="pwdDiv" align="center" style="color : red;"></div>
 			</div>
 			
@@ -58,11 +58,11 @@ $('#write').click(function(){
 $('#login').click(function(){
 	$('#idDiv,#pwdDiv').empty();	
 	
-	if($('#id').val().length == 0 ){
+	if($('#login_id').val().length == 0 ){
 		$('#idDiv').text("IDを入力してください")
 				   .css("font-size","8pt");
 				   
-	}else if($('#pwd').val().length == 0 ){
+	}else if($('#login_pwd').val().length == 0 ){
 		$('#pwdDiv').text("PASSWORDを入力してください")
 		 		    .css("font-size","8pt");
 			
@@ -70,7 +70,7 @@ $('#login').click(function(){
 		$.ajax({
 			type:'POST',
 			url:'/management/user/loginCheck.do',
-			data : 'id='+$('#id').val()+'&pwd='+$('#pwd').val(),
+			data : 'login_id='+$('#login_id').val()+'&login_pwd='+$('#login_pwd').val(),
 			dataType:'text',
 			success:function(data){
 				if(data == 'loginFail'){
